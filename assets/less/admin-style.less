@@ -1,0 +1,84 @@
+/* Ajustes Perfil */
+/* ----------------------------------------- */
+form#your-profile {
+	padding-left: 33px;
+		> p:first-of-type, > h3:first-of-type, > h3:last-of-type, > table.form-table:first-of-type, > table.form-table:last-of-type {
+			display: none;
+		}
+		
+		h3 {
+			margin-left: 10px;
+			font-size: 2em;
+			margin-top: 80px;
+		}
+
+		h3:nth-of-type(2) {
+			margin-top: 30px;
+		}
+
+		div.wpcf-group-area_foto {
+			h3 { display: none;}
+		}
+}	 
+.fa-live-preview {
+	display: none;
+}
+/* ----------------------------------------- Ajustes Perfil */		
+
+/* controle de exibição dos menus do admin */
+/* ----------------------------------------- */
+#toplevel_page_edit-post_type-acf-field-group {
+	display: none;
+}
+body {
+	&.user-1 {
+		#toplevel_page_edit-post_type-acf-field-group {
+			display: block !important;
+		}
+	}
+}
+/* ----------------------------------------- controle de exibição dos menus do admin */		
+
+/* dividir repeater em blocos */
+/* ----------------------------------------- */
+#bloco-col-2 {
+	.acf-table {
+		> tbody {
+			> tr {
+					float: left;
+					width: 50%;
+			}
+		}
+	}
+	.acf-repeater .acf-row-handle.order + td {
+		width: 96%;
+	}
+}
+
+#bloco-col-3 {
+	.acf-table {
+		> tbody {
+			> tr {
+					float: left;
+					width: 33.3333%;
+			}
+		}
+	}
+	.acf-repeater .acf-row-handle.order + td {
+		width: 96%;
+	}
+}
+#bloco-col-4 {
+	.acf-table {
+		> tbody {
+			> tr {
+					float: left;
+					width: 25%;
+			}
+		}
+	}
+	.acf-repeater .acf-row-handle.order + td {
+		width: 96%;
+	}
+}
+/* ----------------------------------------- dividir repeater em blocos */
