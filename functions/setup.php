@@ -229,15 +229,15 @@ function bigo_load_scripts(){
   if (!is_admin()){
             
 		// desregistrando o jquery nativo e registrando o do CDN do Google.
-		// wp_deregister_script('jquery');
-		// wp_register_script('jquery', '//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js', false, '1.10.2');
-		wp_enqueue_script('jquery');	
+		wp_deregister_script('jquery');
+		wp_register_script('jquery', '//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js', false, '3.2.1');
+		wp_enqueue_script('jquery');
 
-		// Os demais js
 		$link = get_template_directory_uri() . '/assets/';
 		// wp_enqueue_script('moderniz', $link . 'jslib/modernizr-2.7.1.min.js', ['jquery']);
-		wp_enqueue_script('jsbootstrap', $link . 'js/bootstrap.min.js', ['jquery']);
-		wp_enqueue_script('offcanvas', $link . 'js/bootstrap.offcanvas.min.js', ['jquery']);
+		wp_enqueue_script('propper','//cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js', ['jquery']);
+		wp_enqueue_script('jsbootstrap','//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js', ['jquery','propper']);
+
 		wp_enqueue_script('slick', $link . 'slick/slick.min.js', ['jquery']);
 		wp_enqueue_script('acf-maps', $link . 'js/maps.js', ['jquery']);
 		wp_enqueue_script('mask', $link . 'js/jquery.mask.min.js', ['jquery']);
@@ -267,10 +267,11 @@ remove_action('wp_print_styles', 'print_emoji_styles');
 /* ----------------------------------------- */
 function bigo_load_css(){ 
 	// Carrega o arquivo em todas as páginas
-	wp_enqueue_style( 'offcanvas', get_template_directory_uri() . '/assets/css/bootstrap.offcanvas.css' );
+
+	//wp_enqueue_style( 'offcanvas', get_template_directory_uri() . '/assets/css/bootstrap.offcanvas.css' );
 	wp_enqueue_style( 'slick', get_template_directory_uri() . '/assets/slick/slick.css' );
 	wp_enqueue_style( 'slick-theme', get_template_directory_uri() . '/assets/slick/slick-theme.css' );
-	wp_enqueue_style( 'fontawesome', '//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css', false, '4.6.3');
+	wp_enqueue_style( 'fontawesome', '//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css', false, '4.6.3');
 
 }
 add_action('wp_enqueue_scripts', 'bigo_load_css');

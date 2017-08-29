@@ -1,6 +1,9 @@
 <?php
+// inclui nav walker
+require_once('includes/bs4navwalker.php');
 
 // Configura o framework
+
 require_once ('functions/setup.php');
 
 // Configura as funções relacionadas ao painel de admin do wp
