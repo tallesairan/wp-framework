@@ -5,6 +5,7 @@ Authors:
 bsdsouza@gmail.com
 lemoslincoln@gmail.com
 vjrjunior@gmail.com
+airan.talles@gmail.com
 
 
 ### Changelog
