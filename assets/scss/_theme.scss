@@ -1,0 +1,13 @@
+//
+// Load core variables and mixins
+// --------------------------------------------------
+
+@import "_variables.scss";
+@import "_angolanos-mixins.scss";
+@import "_angolanos-default-styles.scss";
+@import "bootstrap/_mixins.scss";
+
+/* Default Styles */
+/* ----------------------------------------- */
+	input:focus { outline-color: $cor-pri; }
+/* ----------------------------------------- Default Styles */

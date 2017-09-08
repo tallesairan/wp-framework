@@ -9,24 +9,26 @@
 
 get_header(); ?>
 
-	<main id="content" class="container" role="main">
-		<section class="row">
-			<div class="col-sm-8">
-				<article <?php post_class(); ?> >
-					<h1><?php _e( 'Ops.', 'twentyten' ); ?></h1>
-					<p><?php _e( 'Acho que você se perdeu, digite abaixo o que procura ou volte para a página inicial.', 'twentyten' ); ?></p>
-					<?php get_search_form(); ?>
+	<main id="content" role="main">
+		<div class="container">
+			<div class="row">
 
-					<script type="text/javascript">
-						// focus on search field after it has loaded
-						document.getElementById('s') && document.getElementById('s').focus();
-					</script>
+				<div class="col-sm-8">
+					<article <?php post_class('page 404'); ?> >
+						<h1><?php _e( 'Ops.', 'twentyten' ); ?></h1>
+						<p><?php _e( 'Acho que você se perdeu, digite abaixo o que procura ou volte para a página inicial.', 'twentyten' ); ?></p>
+						<?php get_search_form(); ?>
 
-				</article>
+						<script type="text/javascript">
+							document.getElementById('s') && document.getElementById('s').focus();
+						</script>
+					</article>
+				</div>
+
+				<?php get_sidebar(); ?>
+
 			</div>
+		</div>
+	</main>
 
-			<?php get_sidebar(); ?>
-			
-		</section> <!-- row -->
-	</main> <!-- #content -->
 <?php get_footer(); ?>

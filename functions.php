@@ -9,7 +9,7 @@ require_once ('functions/setup.php');
 // Configura as funções relacionadas ao painel de admin do wp
 require_once ('functions/wp-admin.php');
 
-// Define as funções gerais 
+// Define as funções gerais
 require_once ('functions/funcoes.php');
 
 // Define as funções sociais

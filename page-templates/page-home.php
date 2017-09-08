@@ -12,29 +12,33 @@
  * @since Starkers 3.1
  */
 
-get_header(); ?>
-	<?php get_template_part('partials/_slideshow'); ?>
-	
-	<main id="content" class="container" role="main">
-		<section class="row">
-			<div class="col-sm-12">
-				<?php if ( have_posts() ) while ( have_posts() ) : the_post(); ?>
-					<article <?php post_class(); ?> >
-						<header>
-							<h1 class="page-title"><?php the_title(); ?></h1>
-						</header>
-						
-						<section>
-							<?php the_content(); ?>
-						</section>
-						
-						<footer>
-							<?php comments_template( '', true ); ?>
-						</footer>
+get_header();
+get_template_part('partials/_slideshow'); ?>
 
-					</article>
-				<?php endwhile; // end of the loop. ?>
+	<main id="content" role="main">
+		<div class="container">
+			<div class="row">
+
+				<div class="col-sm-12">
+					<?php if ( have_posts() ) while ( have_posts() ) : the_post(); ?>
+						<article <?php post_class('page home'); ?> >
+							<header class="page-title">
+								<h1><?php the_title(); ?></h1>
+							</header>
+
+							<div class="page-content">
+								<?php the_content(); ?>
+							</div>
+
+							<footer>
+								<?php comments_template( '', true ); ?>
+							</footer>
+						</article>
+					<?php endwhile; ?>
+				</div>
 			</div>
-		</section> <!-- row -->
-	</main> <!-- #content -->
+
+		</div>
+	</main>
+
 <?php get_footer(); ?>

@@ -1,12 +1,12 @@
-<?php 
-	
+<?php
+
 	/* Taxonmia Tipos */
 	/* ----------------------------------------- */
 		add_action( 'init', 'register_taxonomy_tipos_de_ambiente' );
 
 		function register_taxonomy_tipos_de_ambiente() {
 
-		    $labels = array( 
+		    $labels = array(
 		        'name' => _x( 'Tipos', 'tipos-de-ambiente' ),
 		        'singular_name' => _x( 'Tipo', 'tipos-de-ambiente' ),
 		        'search_items' => _x( 'Pesquisar Tipos', 'tipos-de-ambiente' ),
@@ -24,7 +24,7 @@
 		        'menu_name' => _x( 'Tipos', 'tipos-de-ambiente' ),
 		    );
 
-		    $args = array( 
+		    $args = array(
 		        'labels' => $labels,
 		        'public' => true,
 		        'show_in_nav_menus' => true,
@@ -39,5 +39,5 @@
 
 		    register_taxonomy( 'tipos_de_ambiente', array('ambientes'), $args );
 		}
-	/* ----------------------------------------- Taxonmia Tipos */		
+	/* ----------------------------------------- Taxonmia Tipos */
 ?>

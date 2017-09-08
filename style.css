@@ -1,9 +1,10 @@
 /*
-Theme Name: BIGODES
-Theme URI: http://www.bigodesign.com.br
-Description: Framework BIGO Design
+Theme Name: ANGOLANOS
+Theme URI: http://www.angolanos.com.br
+Description: Framework ANGOLANOS
 Version: 2.0
-Author: Lincoln Lemos | Valdeir Júnior | Bruno Souza
+Author: Bruno Souza | Lincoln Lemos | Valdeir Júnior
 */
-/*@import "assets/css/bootstrap.css";*/
-@import "assets/css/theme.css";
+
+@import "assets/css/_bootstrap.css";
+@import "assets/css/_theme.css";

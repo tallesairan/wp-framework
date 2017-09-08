@@ -2,8 +2,8 @@
 
 /*
 [SETUP]
-#S001 : Filtro 
-#S002 : 
+#S001 : Filtro
+#S002 :
 
 */
 
@@ -192,7 +192,6 @@ function twentyten_widgets_init() {
 		'before_title' => '<h2 style="display:none;">',
 		'after_title' => '</h2>',
 	) );
-
 }
 
 /** Register sidebars by running twentyten_widgets_init() on the widgets_init hook. */
@@ -218,46 +217,31 @@ function of_get_option($name, $default = false) {
     } else {
         return $default;
     }
+	}
 }
-}
-
-
 
 /* Carrega Arquivos JS do tema */
 /* ----------------------------------------- */
-function bigo_load_scripts(){
+function bfriend_load_scripts(){
   if (!is_admin()){
-            
+
 		// desregistrando o jquery nativo e registrando o do CDN do Google.
 		wp_deregister_script('jquery');
 		wp_register_script('jquery', '//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js', false, '3.2.1');
 		wp_enqueue_script('jquery');
 
 		$link = get_template_directory_uri() . '/assets/';
-		// wp_enqueue_script('moderniz', $link . 'jslib/modernizr-2.7.1.min.js', ['jquery']);
-		wp_enqueue_script('propper','//cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js', ['jquery']);
-		wp_enqueue_script('jsbootstrap','//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js', ['jquery','propper']);
+		wp_enqueue_script('propper',			'//cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js', ['jquery']);
+		wp_enqueue_script('jsbootstrap',	'//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js', ['jquery','propper']);
+		wp_enqueue_script('fancybox',			'//cdn.rawgit.com/fancyapps/fancybox/master/dist/jquery.fancybox.min.js', ['jquery']);
+		wp_enqueue_script('slick',				'//cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.7.1/slick.min.js', ['jquery']);
+		wp_enqueue_script('acf-maps', 		$link . 'js/maps.js', ['jquery']);
+		wp_enqueue_script('mask', 				$link . 'js/jquery.mask.min.js', ['jquery']);
 
-		wp_enqueue_script('slick', $link . 'slick/slick.min.js', ['jquery']);
-		wp_enqueue_script('acf-maps', $link . 'js/maps.js', ['jquery']);
-		wp_enqueue_script('mask', $link . 'js/jquery.mask.min.js', ['jquery']);
-		
-		// simpleWeather
-		// wp_enqueue_script('simpleweather', $link. '/vendors/simpleWeather/jquery.simpleWeather-2.3.min.js', ['jquery']);
-		// wp_enqueue_script('tempo-script', $link. '/vendors/simpleWeather/tempo-script.js', ['jquery'] 'simpleweather'));
-		
-		wp_enqueue_script('codigo', get_template_directory_uri(). '/assets/js/codigo.js', array('jquery'));
+		wp_enqueue_script('codigo', 			$link . 'js/codigo.js', ['jquery']);
   }
 }
-add_action( 'wp_print_scripts', 'bigo_load_scripts' );
-
-/* Carrega Scripts/Styles para o Fancybox */
-/* ----------------------------------------- */
-function angolanos_add_fancybox() {
-  wp_enqueue_script( 'fancybox-js', get_template_directory_uri() . '/vendors/fancybox/jquery.fancybox.pack.js', array( 'jquery' ), '2.1.5', true );	    
-  wp_enqueue_style( 'fancybox-css', get_template_directory_uri() . '/vendors/fancybox/jquery.fancybox.css' );
-}
-add_action( 'wp_enqueue_scripts', 'angolanos_add_fancybox' );
+add_action( 'wp_print_scripts', 'bfriend_load_scripts' );
 
 // Remove default Emojis for Wordpress
 remove_action('wp_head', 'print_emoji_detection_script', 7);
@@ -265,18 +249,19 @@ remove_action('wp_print_styles', 'print_emoji_styles');
 
 /* Carrega Arquivos CSS do tema */
 /* ----------------------------------------- */
-function bigo_load_css(){ 
+function bfriend_load_css(){
 	// Carrega o arquivo em todas as páginas
+	$link = get_template_directory_uri() . '/assets/';
 
 	//wp_enqueue_style( 'offcanvas', get_template_directory_uri() . '/assets/css/bootstrap.offcanvas.css' );
-	wp_enqueue_style( 'slick', get_template_directory_uri() . '/assets/slick/slick.css' );
-	wp_enqueue_style( 'slick-theme', get_template_directory_uri() . '/assets/slick/slick-theme.css' );
-	wp_enqueue_style( 'fontawesome', '//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css', false, '4.6.3');
+	wp_enqueue_style( 'fontawesome', 	'//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css', false, '4.6.3' );
+	wp_enqueue_style( 'fancybox', 		'//cdn.rawgit.com/fancyapps/fancybox/60c37246/dist/jquery.fancybox.min.css' );
+	wp_enqueue_style( 'slick', 				'//cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.7.1/slick.min.css' );
+	wp_enqueue_style( 'slick-theme', 	'//cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.7.1/slick-theme.min.css' );
+	wp_enqueue_style( 'slick-loader', '//cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.7.1/ajax-loader.gif' );
 
 }
-add_action('wp_enqueue_scripts', 'bigo_load_css');
-
-
+add_action('wp_enqueue_scripts', 'bfriend_load_css');
 
 /* Adiciona editor se usuário for editor no body-class */
 /* --------------------------------------------------- */
@@ -290,9 +275,6 @@ function bigo_get_images($size = 'thumbnail') {
   global $post;
   return get_children( array('post_parent' => $post->ID, 'post_status' => 'inherit', 'post_type' => 'attachment', 'post_mime_type' => 'image', 'order' => 'ASC', 'orderby' => 'menu_order') );
 }
-
-
-
 
 /* Cria páginas ao instalar o tema */
 /* ----------------------------------------- */
@@ -312,36 +294,34 @@ $paginas = [
 	['Home', '', 'home'],
 	['Blog', '', 'blog'],
 	['Institucional', '', 'institucional'],
-	['Fale Conosco', '', 'fale-conosco'],
-
+	['Contato', '', 'contato'],
 ];
 // Cria as páginas
 if (isset($_GET['activated']) && is_admin()){
-		foreach ($paginas as $pagina) {
-			$page_check = get_page_by_title($pagina[0]);
-			if(!isset($page_check->ID) && !the_slug_exists($pagina[2])){
-			    $newPageId = wp_insert_post(array(
-			    	'post_type' => 'page',
-			    	'post_title' => $pagina[0],
-			    	'post_content' => $pagina[1],
-			    	'post_status' => 'publish',
-			    	'post_author' => 1,
-			    	'post_slug' => $pagina[2]
-			    ));
-			    if ($pagina[0] == 'Home') { update_option( 'page_on_front', $newPageId ); update_option( 'show_on_front', 'page' ); }
-			    if ($pagina[0] == 'Blog') { update_option( 'page_for_posts', $newPageId ); }
-			}	
+	foreach ($paginas as $pagina) {
+		$page_check = get_page_by_title($pagina[0]);
+		if(!isset($page_check->ID) && !the_slug_exists($pagina[2])){
+		    $newPageId = wp_insert_post(array(
+		    	'post_type' => 'page',
+		    	'post_title' => $pagina[0],
+		    	'post_content' => $pagina[1],
+		    	'post_status' => 'publish',
+		    	'post_author' => 1,
+		    	'post_slug' => $pagina[2]
+		    ));
+		    if ($pagina[0] == 'Home') { update_option( 'page_on_front', $newPageId ); update_option( 'show_on_front', 'page' ); }
+		    if ($pagina[0] == 'Blog') { update_option( 'page_for_posts', $newPageId ); }
 		}
+	}
 }
+/* ----------------------------------------- Cria páginas ao instalar o tema */
 
-/* ----------------------------------------- Cria páginas ao instalar o tema */		
-
-/* 
+/*
 	Filtro para criar container responsivo nos embeds do the_content
 	Style no @angolanos-default-styles.less
 /* ----------------------------------------- */
 	add_filter('embed_oembed_html', 'wrap_embed_with_div', 10, 3);
 	function wrap_embed_with_div($html, $url, $attr) {
-	        return "<div class=\"responsive-container\">".$html."</div>";
+    return "<div class=\"responsive-container\">".$html."</div>";
 	}
-/* ----------------------------------------- Filtro para criar container responsivo nos embeds do the_content */		
+/* ----------------------------------------- Filtro para criar container responsivo nos embeds do the_content */

@@ -12,7 +12,7 @@ add_action('acf/init', 'my_acf_init');
 /**
  * Limitar o número de caracteres baseado na $excerpt
  *
- * @since Bruno Souza 2.0
+ * @since Bfriend 4.0
  */
 /* <p><?php echo excerpt('40'); ?></p> */
 function excerpt($limit) {
@@ -30,7 +30,7 @@ function excerpt($limit) {
 /**
  * Limitar o número de caracteres baseado na $excerpt
  *
- * @since Bigo 2.0
+ * @since Bfriend 4.0
  */
 /* Modo de uso <?php echo content(10); ?> */
 function content($limit) {
@@ -40,78 +40,96 @@ function content($limit) {
     $content = implode(" ",$content).'...';
   } else {
     $content = implode(" ",$content);
-  } 
+  }
   $content = preg_replace('/\[.+\]/','', $content);
-  $content = apply_filters('the_content', $content); 
+  $content = apply_filters('the_content', $content);
   $content = str_replace(']]>', ']]&gt;', $content);
-  return $content;
+  return strip_tags($content);
 }
 
+/**
+ * Thumbnail background
+ *
+ * @since Bfriend 4.0
+ */
 /* Modo de uso <section id="topo" <?php thumbnail_bg( 'paginas-destaque' ); ?>> */
 function thumbnail_bg ( $tamanho = 'full' ) {
-    global $post;
-    $get_post_thumbnail = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID), $tamanho, false, '' );
-    if ($get_post_thumbnail) {
-      echo 'style="background-image: url('.$get_post_thumbnail[0].' );"';  
-    } else if ($post->post_parent > 0 ) {
-      $get_post_thumbnail = wp_get_attachment_image_src( get_post_thumbnail_id($post->post_parent), $tamanho, false, '' );
-      echo 'style="background-image: url('.$get_post_thumbnail[0].' );"';  
-    } {
-      echo "no-bg";
-    }    
+  global $post;
+  $get_post_thumbnail = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID), $tamanho, false, '' );
+  if ($get_post_thumbnail) {
+    echo 'style="background-image: url('.$get_post_thumbnail[0].' );"';
+  } else if ($post->post_parent > 0 ) {
+    $get_post_thumbnail = wp_get_attachment_image_src( get_post_thumbnail_id($post->post_parent), $tamanho, false, '' );
+    echo 'style="background-image: url('.$get_post_thumbnail[0].' );"';
+  } {
+    echo "no-bg";
+  }
 }
 
-function get_thumbnail_bg ( $tamanho = 'full' ) {
-    global $post;
-    $get_post_thumbnail = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID), $tamanho, false, '' );
-    if ($get_post_thumbnail) {
-      return 'style="background-image: url('.$get_post_thumbnail[0].' );"';  
-    } else if ($post->post_parent > 0 ) {
-      $get_post_thumbnail = wp_get_attachment_image_src( get_post_thumbnail_id($post->post_parent), $tamanho, false, '' );
-      return 'style="background-image: url('.$get_post_thumbnail[0].' );"';  
-    } {
-      return "no-bg";
-    }    
-}
-
+/**
+ * Taxonomy background
+ *
+ * @since Bfriend 4.0
+ */
+/* Modo de uso <section id="topo" <?php taxonomdy_thumbnail_by( 'nome-field' ); ?>> */
 function taxonomy_thumbnail_bg ( $nomeField ) {
   global $post;
-  $queried_object = get_queried_object(); 
+  $queried_object = get_queried_object();
   $taxonomy = $queried_object->taxonomy;
-  $term_id = $queried_object->term_id;  
+  $term_id = $queried_object->term_id;
 
     if (get_field($nomeField, $queried_object)) {
       $src = get_field($nomeField, $queried_object);
     } else {
       return;
-    }      
+    }
     echo 'style="background-image: url('. $src .' );"';
 }
 
+/**
+ * Acf field backgound
+ *
+ * @since Bfriend 4.0
+ */
 /* É preciso setar o ACF para retornar apenas a URL. */
 /* ----------------------------------------- */
   function acf_thumbnail_bg ( $nomeField ) {
-    global $post;      
+    global $post;
       if (get_field($nomeField)) {
-        $src = get_field($nomeField);  
+        $src = get_field($nomeField);
       } else {
         return;
-      }      
+      }
       echo 'style="background-image: url('. $src .' );"';
   }
 
-/* ----------------------------------------- É preciso setar o ACF para retornar apenas a URL. */    
+/* ----------------------------------------- É preciso setar o ACF para retornar apenas a URL. */
 
+/**
+ * Acf sub_field backgound
+ *
+ * @since Bfriend 4.0
+ */
+/* É preciso setar o ACF para retornar apenas a URL. */
+/* ----------------------------------------- */
+  function acf_thumbnail_bg ( $nomeField ) {
+    global $post;
+      if (get_sub_field($nomeField)) {
+        $src = get_sub_field($nomeField);
+      } else {
+        return;
+      }
+      echo 'style="background-image: url('. $src .' );"';
+  }
 
-
+/* ----------------------------------------- É preciso setar o ACF para retornar apenas a URL. */
 
 function mascara_string($mascara,$string) {
-   $string = str_replace(" ","",$string);
-   for($i=0;$i<strlen($string);$i++)
-   {
-      $mascara[strpos($mascara,"#")] = $string[$i];
-   }
-   return $mascara;
+  $string = str_replace(" ","",$string);
+  for($i=0;$i<strlen($string);$i++) {
+    $mascara[strpos($mascara,"#")] = $string[$i];
+  }
+  return $mascara;
 }
 
 
@@ -121,16 +139,13 @@ function clear_url($input) {
 
   // If scheme not included, prepend it
   if (!preg_match('#^http(s)?://#', $input)) {
-      $input = 'http://' . $input;
+    $input = 'http://' . $input;
   }
-
   $urlParts = parse_url($input);
-
   // remove www
   $domain = preg_replace('/^www\./', '', $urlParts['host']);
 
   return $domain;
-
 }
 
 

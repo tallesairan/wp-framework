@@ -1,9 +1,9 @@
-<div class="header-section col-xs-12">					
+<div class="header-section col-xs-12">
 	<h2 class="page-title"><?php the_field('titulo_3') ?></h2>
-	<div class="linha"><img class="center-block" src="<?php echo images_url('icon-page-header.png'); ?>"></div>					
+	<div class="linha"><img class="center-block" src="<?php echo images_url('icon-page-header.png'); ?>"></div>
 </div>
 
-<?php 
+<?php
 	/*
 		.header-section {
 			.linha {

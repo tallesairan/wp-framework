@@ -1,13 +1,19 @@
 Angolanos Framework
 =========
 
-Authors: 
+Authors:
+bsdsouza@gmail.com
 lemoslincoln@gmail.com
 vjrjunior@gmail.com
-fale@brunowp.com.br 
 
 
 ### Changelog
+2.7 - 08/09/2017
+- Otimização para bootstrap 4.0
+- Atualização Slick 1.7.1
+- Atualização FontAwesome 4.7.0
+- Atualização Fancybox 3
+
 2.6 - 14/12/2016
 - Melhorias html5/css3
 - Suporte para novos idiomas
@@ -32,7 +38,7 @@ fale@brunowp.com.br
 2.2
 - Melhorias
 
-2.0 
+2.0
 - Atualização e criação de novas funções;
 
 1.0

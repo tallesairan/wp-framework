@@ -1,4 +1,4 @@
-<?php 
+<?php
 	/**
 	* Registers a new post type
 	* @uses $wp_post_types Inserts new post type object into the list
@@ -8,7 +8,7 @@
 	* @return object|WP_Error the registered post type object, or an error object
 	*/
 	function cpt_servicos() {
-	
+
 		$labels = array(
 			'name'                => __( 'Serviços', 'angolanos' ),
 			'singular_name'       => __( 'Serviço', 'angolanos' ),
@@ -23,7 +23,7 @@
 			'parent_item_colon'   => __( 'Parent Serviço:', 'angolanos' ),
 			'menu_name'           => __( 'Serviços', 'angolanos' ),
 		);
-	
+
 		$args = array(
 			'labels'                   => $labels,
 			'hierarchical'        => false,
@@ -44,14 +44,14 @@
 			'capability_type'     => 'post',
 			'supports'            => array(
 				'title', 'editor', 'thumbnail',
-				// 'excerpt','custom-fields', 'trackbacks', 'comments', 'author', 
+				// 'excerpt','custom-fields', 'trackbacks', 'comments', 'author',
 				// 'revisions', 'page-attributes', 'post-formats'
 				)
 		);
-	
+
 		register_post_type( 'servico', $args );
 	}
-	
+
 	add_action( 'init', 'cpt_servicos' );
-		
+
 ?>

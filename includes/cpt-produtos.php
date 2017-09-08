@@ -6,7 +6,7 @@
 
     function register_cpt_produto() {
 
-        $labels = array( 
+        $labels = array(
             'name' => _x( 'Produtos', 'produto' ),
             'singular_name' => _x( 'Produto', 'produto' ),
             'add_new' => _x( 'Adicionar Novo', 'produto' ),
@@ -21,18 +21,18 @@
             'menu_name' => _x( 'Produtos', 'produto' ),
         );
 
-        $args = array( 
+        $args = array(
             'labels' => $labels,
             'hierarchical' => false,
-            
+
             'supports' => array( 'title', 'editor', 'thumbnail' ),
             'taxonomies' => array( 'category' ),
-            
+
             'public' => true,
             'show_ui' => true,
             'show_in_menu' => true,
             'menu_position' => 5,
-            
+
             'show_in_nav_menus' => false,
             'publicly_queryable' => true,
             'exclude_from_search' => false,
@@ -46,4 +46,4 @@
         register_post_type( 'produto', $args );
     }
 
-/* ----------------------------------------- CPT para Produtos */        
+/* ----------------------------------------- CPT para Produtos */
